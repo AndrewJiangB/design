@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Trackr</title>
+		<script language="javascript" src="jquery-3.3.1.min.js" > </script>
+		<link href="css/style.css" type="text/css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+		<script>
+		/**
+			$('.strip').each(function(){
+				var $t = $(this),
+				rows = $.trim($t.html()).split('<br>');
+
+				$t.html('');
+
+				$.each(rows, function(i, val){
+					$('<span class="row"></span>').appendTo($t);
+
+					var letters = $.trim(val).split('');
+
+					$.each(letters, function(j, v){
+					v = (v == ' ') ? '&nbsp;' : v;
+					$('<span>' + $.trim(v) + '</span>').appendTo($('.row:last', $t));
+					});
+				});
+			});
+
+			$('body').click(function(){
+			for (i = 0; i < $('.strip span').length; i++) {
+				(function(ind) {
+					setTimeout(function(){
+						$('.strip span:not(".row")').eq(ind).toggleClass('animate');
+						}, ind * 15);
+					})(i);
+				}
+			}).click();
+			**/
+			function switchMain(){
+				$("#main").show();
+				$("#profile").hide();
+				$("#movies").hide();
+			}
+			function switchProfile(){
+				$("#main").hide();
+				$("#profile").show();
+				$("#movies").hide();
+			}
+			function switchMovies(){
+				$("#main").hide();
+				$("#profile").hide();
+				$("#movies").show();
+			}
+			$(function(){
+				$("#main").show();
+				$("#profile").hide();
+				$("#movies").hide();
+			});
+		</script>
+	</head>
+	<body>
+		
+		<!--
+		<span id="titleBackground"><span id="titleText">Trackr</span></span>
+		-->
+		
+		<h1>Trackr</h1>
+		
+		<div id="navigation">
+			<button type="button" id="btnMain" onclick="switchMain();">Main</button>
+			<button type="button" id="btnProfile" onclick="switchProfile();">Profile</button>
+			<button type="button" id="btnMovies" onclick="switchMovies();">Movies</button>
+		</div>
+		
+		<div id="main">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+		
+		<div id="profile">
+			<img src="css/trumpetLord.png" id="profilePic" /><br/>
+			<h2>Trumpet Lord</h2>
+		</div>
+		
+		<div id="movies">
+			<img src="css/warning.png" id="movieIcon" />
+			<div id="movieData">
+				Movie Name: HearthStone<br/>
+				Overall User Rating: 6.9<br/>
+				Genre: Horror<br/>
+				Status: Compelted<br/>
+				Number of Episodes: 1<br/>
+				Producer: Kripp	<br/>
+				Length: Movie<br/>
+				Viewer Safety Rating: XXX<br/>
+			</div>
+			<h2>Synopsis</h2>
+			<div id="synopsis">
+				▬▬ι═══════ﺤ As I ʜᴏʟᴅ ᴛʜᴇ sᴀᴍᴜʀᴀɪ sᴡᴏʀᴅ ᴛᴏ ᴍʏ sᴛᴏᴍᴀᴄʜ ᴀs I ᴡᴀs ᴀʙᴏᴜᴛ ᴛᴏ ᴄᴏᴍᴍɪᴛ sᴜᴅᴏᴋᴜ, I ᴡᴀᴛᴄʜ Kʀɪᴘᴘ ᴘʟᴀʏ Cᴀsᴜᴀʟsᴛᴏɴᴇ... I ʀᴇᴍᴇᴍʙᴇʀ ᴀ ᴛɪᴍᴇ ᴡʜᴇʀᴇ Kʀɪᴘ ᴡᴀs Nᴏʟɪғᴇ... ɴᴏᴡ I ᴀᴍ Nᴏʟɪғᴇ...ɢᴏᴏᴅ ʙʏᴇ ᴋʀɪᴘᴘ ▬▬ι═══════ﺤ</div>
+			</div>
+		
+	</body>
+</html>
+

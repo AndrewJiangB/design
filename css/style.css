@@ -1,0 +1,105 @@
+body{
+	background-image: url("wallpaper.png");
+	text-align: center;
+}
+
+h1{
+	margin: 10px auto 20px auto;
+	width:50%;
+	font-size: 300%;
+	font-family: 'Mina', sans-serif;
+}
+
+#navigation{
+	margin: auto;
+	width: 50%;
+	margin: 10px auto 20px auto;
+}
+
+#main{
+	margin: auto;
+	width: 50%;
+}
+
+#profile{
+	margin: auto;
+	width: 50%;
+}
+
+#profilePic{
+	border-radius: 50%;
+	width: 150px;
+}
+
+h2{
+	font-family: 'Lato', sans-serif;
+	font-size: 300%;
+	font-weight: 500;
+	color: crimson;
+	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: crimson;
+}
+
+#movies{
+	margin: auto;
+	width: 50%;
+}
+
+#movieIcon{
+	height: 150px;
+	margin: auto 15px auto auto;
+}
+
+#movieData{
+	margin: auto;
+	text-align: left;
+	display: inline-block;
+}
+
+#synopsis{
+	margin: 15px auto auto auto;
+	border-radius: 5px;
+	border: 2px solid crimson;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+button {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #d93452;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+button:hover {
+  background: #db4b7b;
+  text-decoration: none;
+}
+
+
+#titleText{
+	display: inline-block;
+	font-size: 15vmin;
+	line-height: 1.205;
+	opacity: 0;
+	position: relative;
+}
+
+.titleBackground{
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  transform-origin: left;
+  transform: scaleX(0)
+  background-color: #5fbff9;
+}
+
