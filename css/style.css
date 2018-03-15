@@ -113,12 +113,14 @@ img{
 #movieIcon{
 	height: 150px;
 	margin: auto 15px auto auto;
+	vertical-align: top;
 }
 
 #movieData{
 	margin: auto;
 	text-align: left;
 	display: inline-block;
+	vertical-align: top;
 }
 
 #synopsis{
