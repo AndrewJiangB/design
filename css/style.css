@@ -1,5 +1,5 @@
 body{
-	background-image: url("wallpaper2.png");
+	background-image: url("wallpaper3.png");
 	background-size: cover;
 	text-align: center;
 }
@@ -90,7 +90,7 @@ img{
 
 #profile{
 	margin: 30px auto auto auto;
-	width: 30%;
+	width: 450px;
 	align-content: left;
 	border: 2px solid grey;
 	background-color: rgba(255, 255, 255, 0.7);
