@@ -1,5 +1,6 @@
 body{
-	background-image: url("wallpaper.png");
+	background-image: url("wallpaper2.png");
+	background-size: cover;
 	text-align: center;
 }
 
@@ -7,7 +8,29 @@ h1{
 	margin: 10px auto 20px auto;
 	width:50%;
 	font-size: 300%;
-	font-family: 'Mina', sans-serif;
+}
+
+x-sign {
+	font-size: 1000%;
+	--interval: 1s;
+	display: block;
+	text-shadow: 
+	0 0 10px var(--color1),
+	0 0 20px var(--color2),
+	0 0 40px var(--color3),
+	0 0 80px var(--color4);
+	will-change: filter, color;
+	filter: saturate(60%);
+	animation: flicker steps(100) var(--interval) 1s infinite;
+}
+
+x-sign:nth-of-type(1) {
+	color: lightyellow;
+	--color1: yellow;
+	--color2: lime;
+	--color3: green;
+	--color4: mediumblue;
+	font-family: 'Gruppo', cursive;
 }
 
 #navigation{
@@ -35,10 +58,10 @@ h2{
 	font-family: 'Lato', sans-serif;
 	font-size: 300%;
 	font-weight: 500;
-	color: crimson;
+	color: Chartreuse ;
 	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
 	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: crimson;
+	-webkit-text-stroke-color: Chartreuse ;
 }
 
 #movies{
@@ -65,20 +88,60 @@ h2{
 }
 
 button {
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: 'Oswald', sans-serif;
   color: #ffffff;
   font-size: 20px;
-  background: #d93452;
+  background: #399e8b;
   padding: 10px 20px 10px 20px;
+  border: solid #719983 2px;
   text-decoration: none;
 }
 
 button:hover {
-  background: #db4b7b;
+  background: #47d98e;
   text-decoration: none;
+}
+
+/* Back Pulse */
+@-webkit-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+@keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+.hvr-back-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-back-pulse:hover, .hvr-back-pulse:focus, .hvr-back-pulse:active {
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #47d98e;
+  background-color: #47d98e;
+  color: white;
 }
 
 
