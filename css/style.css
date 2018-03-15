@@ -48,6 +48,7 @@ x-sign:nth-of-type(1) {
 	--color2: lime;
 	--color3: green;
 	--color4: mediumblue;
+	/*font-family: 'Kumar One Outline', cursive;*/
 	font-family: 'Gruppo', cursive;
 }
 
@@ -62,7 +63,7 @@ x-sign:nth-of-type(1) {
 	width: 50%;
 }
 
-#popularMovies{
+#movieSection{
 	height: 190px;
 	display: -webkit-flex;
 	display: flex;
@@ -81,19 +82,17 @@ img{
 	padding: 6px;
 }
 
-
-#profile{
-	margin: auto;
-	width: 50%;
-}
-
 #profilePic{
 	border-radius: 50%;
 	width: 150px;
 }
 
 #profile{
+	margin: auto;
+	width: 30%;
 	align-content: left;
+	border: 2px solid grey;
+	background-color: rgba(255, 255, 255, 0.7);
 }
 
 #profileData{
@@ -121,6 +120,9 @@ img{
 	text-align: left;
 	display: inline-block;
 	vertical-align: top;
+	border: 2px solid grey;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 5px;
 }
 
 #synopsis{
