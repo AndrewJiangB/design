@@ -10,6 +10,24 @@ h1{
 	font-size: 300%;
 }
 
+h2 {
+	padding: 0px;
+	border: none;
+	text-align: left;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	border: none;
+	font: normal 50px/1 "Aladin", Helvetica, sans-serif;
+	color: rgba(48,48,48,1);
+	text-align: left;
+	text-transform: normal;
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	white-space: pre;
+	text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ;
+}
+
 x-sign {
 	font-size: 1000%;
 	--interval: 1s;
@@ -45,7 +63,7 @@ x-sign:nth-of-type(1) {
 }
 
 #popularMovies{
-	height: 200px;
+	height: 190px;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-wrap: wrap;
@@ -55,6 +73,8 @@ x-sign:nth-of-type(1) {
 	background-color: rgba(255, 255, 255, 0.7);
 	border: 2px solid grey;
 	padding: 10px;
+
+	overflow: hidden;
 }
 
 img{
@@ -72,15 +92,17 @@ img{
 	width: 150px;
 }
 
-h2{
-	font-family: 'Lato', sans-serif;
-	font-size: 300%;
-	font-weight: 500;
+#profile{
+	align-content: left;
+}
+
+#profileData{
+	margin: auto;
 	text-align: left;
-	color: Chartreuse ;
-	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
-	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: Chartreuse ;
+	display: inline-block;
+	vertical-align: top;
+	padding: 5px;
+	font-size: 22px;
 }
 
 #movies{
@@ -181,4 +203,3 @@ button:hover {
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
 }
-
