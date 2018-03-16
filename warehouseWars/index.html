@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta HTTP-EQUIV="EXPIRES" CONTENT="-1">
+		<title>Computing Science 309 Warehouse Wars</title>
+		<script language="javascript" src="jquery-3.3.1.min.js" > </script>
+		<!--<script language="javascript" src="ww.js" > </script>-->
+		<script language="javascript" src="actors.js" > </script>
+		<script language="javascript" src="stage.js" > </script>
+		<script language="javascript" src="ww_client.js"></script>
+		<link href="style.css" type="text/css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<audio autoplay loop>
+		  <source src="sounds/790340_dj-N-Theory-of-Everything-.mp3" type="audio/mpeg">
+		  Your browser does not support the audio element.
+		</audio>
+		<script> 
+			map=null;
+			player=null;
+			var time = 0;
+			// SOME GLUE CODE CONNECTING THIS PAGE TO THE STAGE
+			interval=null;
+			var state = "login";
+			function setupGame(){
+				var width = 20;
+				var height = 20;
+				var num_monsters = 0;
+				
+				var mapObjects = [];
+				var mapExists =[];
+				
+				player = new Player("player", width / 2, height / 2);
+				mapExists.push(this.width / 2 + "_" + this.height / 2)
+				
+				//Adds boxes
+				for (var i = 0; i < 40; i++){
+					var ranX = Math.floor(Math.random() * (width - 2 - 1 + 1) ) + 1;
+					var ranY = Math.floor(Math.random() * (height - 2 - 1 + 1) ) + 1;
+					if(mapExists.indexOf(ranX + "_" + ranY)==-1){
+						mapExists.push(ranX + "_" + ranY);
+						mapObjects.push(new Box(i,ranX,ranY));
+					}
+				}
+				
+				//Adds monsters
+				for (var i = 0; i < 8; i++){
+					var ranX = Math.floor(Math.random() * (width - 2 - 1 + 1) ) + 1;
+					var ranY = Math.floor(Math.random() * (height - 2 - 1 + 1) ) + 1;
+					if(mapExists.indexOf(ranX + "_" + ranY)==-1){
+						mapExists.push(ranX + "_" + ranY);
+						mapObjects.push(new Monster(i,ranX,ranY));
+						num_monsters += 1;
+					}
+				}
+				
+				//Horizontal Walls
+				for (var w = 0; w < width; w++){
+					mapObjects.push(new Wall("wall_"+w+"_0",w,0));
+					mapObjects.push(new Wall("wall_"+w+"_"+height-1,w,height-1));
+				}
+				
+				//Vertical Walls
+				for (var h = 1; h < height-1; h++){
+					mapObjects.push(new Wall("wall_0_"+h,0,h));
+					mapObjects.push(new Wall("wall_"+width-1+"_"+h,width-1,h));
+				}
+				
+				map=new Map(width,height,"stage");
+				map.gameSetup(mapObjects, player, num_monsters);
+			}
+			function keyListener(e) {
+				map.player.keypress(e.keyCode, map);
+			}
+			function startGame(){
+				// put the game board into div with id stage
+				// start clock to signal when to move
+				// start accepting key bindings
+				interval=setInterval(function(){map.step();}, 1000);
+				window.addEventListener('keydown',keyListener);
+			}
+			function svg_move(direction){
+				map.player.keypress(direction,map);
+			}
+			function pauseGame(){
+				
+				var button = document.getElementById("pauseButton")
+				if(map.player.pauseSwitch()){
+					clearInterval(interval);
+					button.innerText = "Unpause";
+					return;
+				}
+				interval=setInterval(function(){map.step();}, 1000);
+				button.innerText = "Pause";
+				
+			}
+			function restart(){
+				clearInterval(interval);
+				document.getElementById("pauseButton").innerText ="Pause";
+				setupGame();
+				startGame();
+			}
+
+			$(function(){
+				$("#game").show();
+				$("#register").hide();
+				$("#login").hide();
+				setTop10();
+				document.getElementById("login_btn").onclick = function(){loginUser()};
+				document.getElementById("register_login_btn").onclick = function(){showRegister()};
+				document.getElementById("register_new_btn").onclick = function(){registerUser()};
+				document.getElementById("back").onclick = function(){showLogin()};
+				document.getElementById("delete_btn").onclick = function(){deleteUser()};
+				$("#login_error_message").html("");
+				$("#login_error_message").show();
+				$("#register_error_message").html("");
+				$("#register_error_message").show();
+				setupGame();
+				startGame();
+				//showLogin();
+			});
+		</script>
+	</head>
+	<body>
+			<h1>WAREHOUSE WARS</h1>
+			
+			<section id="login">
+				<h2>Login Form</h2>
+				<input type="text" class="form_input" placeholder="username" maxlength="19" id="login_username" required/><br>
+				<input type="password"class="form_input" placeholder="password" maxlength="19" id="login_password" required/><br>
+
+				<button type="button" id="login_btn"/>Login</button>
+				<button type="button" id="register_login_btn"/>Register</button>
+				<p id="login_error_message" style="color: red"></p>
+				<table id="top10List"></table>
+			</section>
+			<section id="register">
+				<h2>Register</h2>
+				<input type="text" class="form_input" placeholder="username" maxlength="19" id="register_username" required/><br>
+				<input type="password" class="form_input" placeholder="password" maxlength="19" id="register_password" required/><br>
+				<input type="password" class="form_input" placeholder="confirm password" maxlength="19" id="register_confirmation_password" required/><br>
+				<form id="radio_buttons_choices" style="width: fit-content;">
+					<input type="radio" name="gender" id="male_radio" value="Male"/><label>Male</label>
+					<input type="radio" name="gender" id="female_radio" value="Female"/><label>Female</label>
+					<input type="radio" name="gender" id="other_radio" value="Other" checked="checked"/><label>Other</label>
+				</form>
+				<form id="checkbox_form" style="width: fit-content">
+					<input type="checkbox" class="form_input" id="terms"/><label>I agree I won't copy your code</label>
+				</form>
+				<br>
+				<button type="button" id="back"/>Back</button>
+				<button type="button" id="register_new_btn"/>Register</button>
+				<br>
+				<p id="register_error_message" style="color:red">Cannot register user</p>
+			</section>
+
+			<section id="game">
+				<div id="container">
+				<div id="profile">
+					<h2>Profile</h2>
+						<h3>Username:</h3><p id="profile_username"></p>
+						<h3>High Score:</h3><p id="profile_score"></p>
+						<button type="button" id="delete_btn">Delete</button>
+				</div>
+				<div id="legend">
+					<h2>Legend</h2>
+					<table class="legend">
+						<tr>
+							<td> <img src="icons/wall.jpeg" id="wallImage" /> </td>
+							<td> <img src="icons/emblem-package-2-24.png" id="boxImage" /> </td>
+							<td> <img src="icons/face-cool-24.png" id="playerImage" /> </td>
+						</tr>
+						<tr>
+							<td> Wall </td>
+							<td> Box </td>
+							<td> Player </td>
+						</tr>
+						<tr>
+							<td> <img src="icons/face-devil-grin-24.png" id="monsterImage" /> </td>
+							<td> <img src="icons/face-devil-grin-25.png" id="monsterImage" /> </td>
+							<td> <img src="icons/face-devil-grin-26.png" id="monsterImage" /></td>
+						</tr>
+						<tr>
+							<td> Monster </td>
+							<td> Smart Monster </td>
+							<td> Evil Monster </td>
+						</tr>
+					</table><br>
+					
+				</div>
+				
+				</div>
+				<div id="stage">
+					<div id="data">
+						Time Elapsed: <span id="timePassed">0</span><br/>
+						Score: <span id="scoreBoard">60</span>
+					</div>
+					<table id="map"></table>
+				</div>
+				<div id="controls">
+					<h2>Controls</h2>
+					<button type="button" onclick="pauseGame();" id="pauseButton">Pause</button>   <button type="button" onclick="restart();" id="restartButton">Restart</button>
+					<table class="controls">
+						<tr>
+							<td><img src="icons/north_west.svg" onclick="svg_move(81);" /></td>
+							<td><img src="icons/north.svg" onclick="svg_move(87);" /></td>
+							<td><img src="icons/north_east.svg" onclick="svg_move(69);" onclick="svg_move(69);"/></td>
+						</tr>
+						<tr>
+							<td><img src="icons/west.svg" onclick="svg_move(65);"/></td>
+							<td>&nbsp;</td>
+							<td><img src="icons/east.svg" onclick="svg_move(68);"/></td>
+						</tr>
+						<tr>
+							<td><img src="icons/south_west.svg" onclick="svg_move(90);"/></td>
+							<td><img src="icons/south.svg" onclick="svg_move(88);"/></td>
+							<td><img src="icons/south_east.svg" onclick="svg_move(67);"/></td>
+						</tr>
+						</table>
+				</div>
+				
+			</section>
+	</body>
+</html>
+

@@ -64,74 +64,16 @@ x-sign:nth-of-type(1) {
 	width: 50%;
 }
 
-#movieSection{
-	height: 190px;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-webkit-align-content: left;
-	align-content: left;
-	background-color: rgba(60, 137, 105, 0.6);
-	border: 2px solid #1C3F30;
-	padding: 10px;
-
-	overflow: hidden;
-}
-
 img{
+	width: 100px;
 	padding: 6px;
 }
 
-#profilePic{
-	border-radius: 50%;
-	width: 150px;
-}
-
-#profile{
-	margin: 30px auto auto auto;
-	width: 450px;
-	align-content: left;
-	border: 2px solid grey;
-	background-color: rgba(255, 255, 255, 0.7);
-}
-
-#profileData{
-	margin: auto;
-	text-align: left;
+.fieldElement{
 	display: inline-block;
-	vertical-align: top;
-	padding: 5px;
-	font-size: 22px;
 }
 
-#movies{
-	margin: 30px auto auto auto;
-	width: 50%;
-}
 
-#movieIcon{
-	height: 150px;
-	margin: auto 15px auto auto;
-	vertical-align: top;
-}
-
-#movieData{
-	margin: auto;
-	text-align: left;
-	display: inline-block;
-	vertical-align: top;
-	border: 2px solid grey;
-	background-color: rgba(255, 255, 255, 0.7);
-	padding: 5px;
-}
-
-#synopsis{
-	margin: 15px auto auto auto;
-	border-radius: 5px;
-	border: 2px solid grey;
-	background-color: rgba(255, 255, 255, 0.7);
-}
 
 button {
   -webkit-border-radius: 5;

@@ -1,0 +1,196 @@
+@font-face {
+font-family: "Moving Day";
+
+src: 
+url("fonts/kr_moving_day-webfont.woff") format("woff"),
+url("fonts/kr_moving_day-webfont.ttf") format("ttf"),
+url("fonts/kr_moving_day-webfont.woff2") format("woff2");
+}
+
+img {
+	width: 25px;
+}
+
+h1{
+	width: 40%;
+	border: 2px solid powderblue;
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 25px;
+	font-family: 'Moving Day', Arial, sans-serif;
+	font-weight:normal;
+	font-style:normal;
+	font-size: 100px;
+	margin: 10px auto 50px auto;
+	text-align: center;
+	animation-duration: 3s;
+	animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: -100%;
+    width: 40%; 
+  }
+
+  to {
+    margin-left: 30%;
+    width: 40%;
+  }
+}
+
+body{
+	background-image: url("dark-triangles.png"), url("industrial-background.jpg");
+	background-size: cover;
+	font-family: 'Roboto Condensed', sans-serif;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 20px;
+}
+
+
+#login, #register {
+	margin: auto;
+	text-align: center;
+}
+
+#login input, #login button, #register input, #register button {
+	margin: 5px;
+}
+
+#login input, #register input {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#login h2, #register h2{
+	font-size: 300%;
+	font-weight: 500;
+	color: white;
+	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+}
+
+#top10List{
+	margin: auto;
+	border-radius: 5px;
+	border: 2px solid powderblue;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+#radio_buttons_choices, #checkbox_form{
+	margin: 10px auto 10px auto;
+	width: 300px;
+	border-radius: 5px;
+	border: 2px solid powderblue;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+#game{
+	margin: 0 auto;
+	text-align: center;
+	padding: 0;
+	padding: 0;
+}
+
+#profile_table{
+	text-align: center;
+}
+
+#container{
+	vertical-align: top;
+	text-align: center;
+	width: 300px;
+	display: inline-block;
+	animation-duration: 3s;
+	animation-name: slideup;
+}
+
+#profile, #legend {
+	height: 270px;
+	margin: 0 20px 20px 0;
+	padding: 5px;
+	border-radius: 25px;
+	border: 2px solid powderblue;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.legend{
+	margin: auto;
+}
+
+.legend td{padding:5px;}
+
+#stage{
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	padding: 5px;
+	margin: -44px 0 0 0;
+}
+
+#data{
+	display: inline-block;
+	width: 250px;
+	height: 40px;
+	border: 2px solid powderblue;
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 25px;
+	margin: 0 0 5px 0;
+}
+
+#map{
+	border: 2px solid powderblue;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+#controls{
+	vertical-align: top;
+	width: 300px;
+	height: 250px;
+	margin: 0 0 0 20px;
+	border-radius: 25px;
+	border: 2px solid powderblue;
+	background-color: rgba(255, 255, 255, 0.7);
+	display: inline-block;
+	animation-duration: 3s;
+	animation-name: slideup;
+}
+
+.controls{
+	margin: auto;
+}
+
+button {
+	box-shadow: rgb(220, 236, 251) 0px 1px 0px 0px inset; 
+	background: linear-gradient(rgb(189, 219, 250) 5%, rgb(128, 181, 234) 100%) rgb(189, 219, 250); 
+	border-radius: 6px; border: 1px solid rgb(132, 187, 243); 
+	display: inline-block; 
+	cursor: pointer; 
+	color: rgb(255, 255, 255); 
+	padding: 6px 24px; 
+	text-decoration: none;
+	text-shadow: rgb(82, 142, 204) 0px 1px 0px;
+}
+
+button:hover {
+  background: #b2c8d4;
+  background-image: -webkit-linear-gradient(top, #b2c8d4, #74b0d6);
+  background-image: -moz-linear-gradient(top, #b2c8d4, #74b0d6);
+  background-image: -ms-linear-gradient(top, #b2c8d4, #74b0d6);
+  background-image: -o-linear-gradient(top, #b2c8d4, #74b0d6);
+  background-image: linear-gradient(to bottom, #b2c8d4, #74b0d6);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes slideup {
+  from {
+    margin-top: 100%;
+  }
+
+  to {
+    margin-top: 0%;
+  }
+}
