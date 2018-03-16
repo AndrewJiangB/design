@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Trackr</title>
+		<script language="javascript" src="jquery-3.3.1.min.js" > </script>
+		<link href="css/style.css" type="text/css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css?family=Kumar+One+Outline|Aladin|Gruppo|Lato|Oswald" rel="stylesheet">
+		<script>
+			const signs = document.querySelectorAll('h1')
+			const randomIn = (min, max) => (
+				Math.floor(Math.random() * (max - min + 1) + min)
+			)
+
+			const mixupInterval = el => {
+				const ms = randomIn(2000, 4000)
+				el.style.setProperty('--interval', `${ms}ms`)
+			}
+
+			signs.forEach(el => {
+				mixupInterval(el)
+				el.addEventListener('webkitAnimationIteration', () => {
+					mixupInterval(el)
+				})
+			})
+			function switchMain(){
+				$("#main").show();
+				$("#profile").hide();
+				$("#movies").hide();
+			}
+			function switchProfile(){
+				$("#main").hide();
+				$("#profile").show();
+				$("#movies").hide();
+			}
+			function switchMovies(){
+				$("#main").hide();
+				$("#profile").hide();
+				$("#movies").show();
+			}
+			$(function(){
+				$("#main").show();
+				$("#profile").hide();
+				$("#movies").hide();
+			});
+		</script>
+	</head>
+	<body>
+		
+		<!--
+		<span id="titleBackground"><span id="titleText">Trackr</span></span>
+		-->
+		
+		<x-sign>Tracker</x-sign>
+		
+		<div id="navigation">
+			<button type="button" class="hvr-back-pulse" id="btnMain" onclick="switchMain();">Main</button>
+			<button type="button" class="hvr-back-pulse" id="btnProfile" onclick="switchProfile();">Profile</button>
+			<button type="button" class="hvr-back-pulse" id="btnMovies" onclick="switchMovies();">Movies</button>
+		</div>
+		
+		<div id="main">
+			<div id="popular">
+				<h2>Popular Movies</h2>
+				<div id="movieSection">
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie1.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie2.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie3.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie4.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie5.jpg"/></a>
+				</div>
+				
+			</div>
+			<div id="Recommended">
+				<h2>Recommended Movies</h2>
+				<div id="movieSection">
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie6.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie7.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie8.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie9.jpg"/></a>
+					<a href="#" class="hvr-float" onclick="switchMovies();"><img src="css/movieImages/movie10.jpg"/></a>
+				</div>
+			</div>
+		</div>
+		
+		<div id="profile">
+			<img src="css/trumpetLord.png" id="profilePic" />
+			<div id="profileData">
+				<span style="margin: auto auto auto -30px;">Name: Trumpet Lord</span><br/>
+				<span style="margin: auto auto auto -20px;">Gender: Trumpet<br/>
+				<span style="margin: auto auto auto -10px;">Specialty: Honk<br/>
+				<span style="margin: auto auto auto -10px;">Age: Immortal<br/>
+				<span style="margin: auto auto auto -20px;">Movies Watched: 420<br/>
+				<span style="margin: auto auto auto -30px;">Horseman of the Apocalypse: Yes<br/>
+			</div>
+		</div>
+		
+		<div id="movies">
+			<img src="css/warning.png" id="movieIcon" />
+			<div id="movieData">
+				Movie Name: HearthStone<br/>
+				Overall User Rating: 6.9<br/>
+				Genre: Horror<br/>
+				Status: Compelted<br/>
+				Number of Episodes: 1<br/>
+				Producer: Kripp	<br/>
+				Length: Movie<br/>
+				Viewer Safety Rating: XXX<br/>
+			</div>
+			<h2>Synopsis</h2>
+			<div id="synopsis">
+				▬▬ι═══════ﺤ As I ʜᴏʟᴅ ᴛʜᴇ sᴀᴍᴜʀᴀɪ sᴡᴏʀᴅ ᴛᴏ ᴍʏ sᴛᴏᴍᴀᴄʜ ᴀs I ᴡᴀs ᴀʙᴏᴜᴛ ᴛᴏ ᴄᴏᴍᴍɪᴛ sᴜᴅᴏᴋᴜ, I ᴡᴀᴛᴄʜ Kʀɪᴘᴘ ᴘʟᴀʏ Cᴀsᴜᴀʟsᴛᴏɴᴇ... I ʀᴇᴍᴇᴍʙᴇʀ ᴀ ᴛɪᴍᴇ ᴡʜᴇʀᴇ Kʀɪᴘ ᴡᴀs Nᴏʟɪғᴇ... ɴᴏᴡ I ᴀᴍ Nᴏʟɪғᴇ...ɢᴏᴏᴅ ʙʏᴇ ᴋʀɪᴘᴘ ▬▬ι═══════ﺤ</div>
+			</div>
+		
+	</body>
+</html>
+
