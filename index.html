@@ -2,11 +2,52 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Trackr</title>
+		<title>Wicked</title>
 		<script language="javascript" src="jquery-3.3.1.min.js" > </script>
 		<link href="css/style.css" type="text/css" rel="stylesheet"/>
-		<link href="https://fonts.googleapis.com/css?family=Kumar+One+Outline|Aladin|Gruppo|Lato|Oswald" rel="stylesheet">
+		<script language="javascript" src="wicked/cards.js"></script>
+		<script language="javascript" src="wicked/actor.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Rock+Salt|Kumar+One+Outline|Aladin|Gruppo|Lato|Oswald" rel="stylesheet">
 		<script>
+			deck = null;
+			game = null;
+			function setupGame(){
+				deck = new Deck();
+				deck.new_deck();
+				deck.shuffle();
+				game = gameMaster();
+				game.setup("player1",deck);
+			}
+			
+			function buildCards(){
+				var cards = [];
+				var suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+				for (var i = 0; i < 4; i++){
+					cards.push("King of " + suits[i]);
+					cards.push("Queen of " + suits[i]);
+					cards.push("Jack of " + suits[i]);
+				}
+				console.log(cards);
+				var choices = "<table>";
+				for (var k = 0; k < cards.length; k++){
+					choices += "<tr><td id='cards'>" + cards[k] + "</td></tr>"
+				}
+				choices += "</table>";
+				document.getElementById("cardChoices").innerHTML = choices;
+			}
+			
+			function showTitle(){
+				$("#title").show();
+			}
+			
+			function hideTitle(){
+				$("#title").hide();
+			}
+			
+			$(function(){
+				hideTitle();
+				buildCards();
+			});
 			
 		</script>
 	</head>
@@ -16,36 +57,54 @@
 		<span id="titleBackground"><span id="titleText">Trackr</span></span>
 		-->
 		
-		<x-sign>Tracker</x-sign>
+		<div id="title"><x-sign>WICKED</x-sign></div>
 		
 		<div id="navigation">
-			<button type="button" class="hvr-back-pulse" id="btnMain" onclick="switchMain();">Main</button>
-			<button type="button" class="hvr-back-pulse" id="btnProfile" onclick="switchProfile();">Profile</button>
-			<button type="button" class="hvr-back-pulse" id="btnMovies" onclick="switchMovies();">Movies</button>
+			<button type="button" class="hvr-back-pulse" id="btnMain" onclick="showTitle();">Title</button>
+			<button type="button" class="hvr-back-pulse" id="btnProfile" onclick="hideTitle();">No Title</button>
 		</div>
-		
-		<div id="main">
-			<div id="field">
-				<h2>Field</h2>
-				<div class="fieldElement" id="benefactor">
-					<img src="css/movieImages/movie1.jpg"/>
-				</div>
-				<div class="fieldElement" id="alignment">
-					<img src="css/movieImages/movie1.jpg"/>
-				</div>
-				<div class="fieldElement" id="played">
-					<img src="css/movieImages/movie1.jpg"/>
+		<div id="stage">
+			<!-- mid menu -->
+			<div id="main">
+			
+				<div id="player">
+					<div class="subcategory" id="turn">
+						→
+					</div>
+					<div class="subcategory" id="field">
+						<h2>Field</h2>
+						<div class="fieldElement" id="alignment">
+							<img src="css/wicked/2.jpg"/>
+						</div>
+						<div class="fieldElement" id="benefactor">
+							<img src="css/wicked/1.jpg"/>
+						</div>
+						<div class="fieldElement" id="played">
+							<img src="css/wicked/3.jpg"/>
+						</div>
+					</div>
 				</div>
 				
+				<div id="options">
+					<div class="subcategory" id="liar">
+						<button>Liar</button>
+					</div>
+					<div class="subcategory" id="hand">
+						<h2>Hand</h2>
+						<div class="subcategory" id="handCards">
+							<img src="css/wicked/4.jpg"/>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div id="hand">
-				<h2>Hand</h2>
-				<div id="handImg">
-					<img src="css/movieImages/movie6.jpg"/>
+			
+			<div id="choices">
+				<h2>Pick a Card</h2>
+				<div id="cardChoices">
+				
 				</div>
 			</div>
 		</div>
-
 	</body>
 </html>
 
