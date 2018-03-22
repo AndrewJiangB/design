@@ -30,7 +30,6 @@ class actor{
 	* @return {string} alignment - The alignment of the player.
 	*/
 	get_alignment(){
-		document.getElementById("alignment").innerHTML = this.alignment;
 		return this.alignment;
 	}
 	
@@ -40,7 +39,6 @@ class actor{
 	*/
 	get_benefactor(){
 		if (this.benefactor.length==0)return null;
-		document.getElementById("benefactor").innerHTML = this.benefactor[this.benefactor.length-1];
 		return this.benefactor[this.benefactor.length-1];
 	}
 	
@@ -50,7 +48,6 @@ class actor{
 	*/
 	get_played(){
 		if (this.played.length==0)return null;
-		document.getElementById("played").innerHTML = this.played[this.played.length-1];
 		return this.played[this.played.length-1];
 	}
 	
@@ -59,7 +56,6 @@ class actor{
 	* @return {list} hand - The player's hand.
 	*/
 	get_hand(){
-		document.getElementById("handCards").innerHTML = this.hand;
 		return this.hand;
 	}
 	
@@ -103,6 +99,23 @@ class actor{
 	set_retribution(card){
 		this.retribution.push(card);
 	}
+	
+	draw_field(){
+		//document.getElementById("handCards").innerHTML = this.get_hand();
+		document.getElementById("played").innerHTML = this.get_played();
+		document.getElementById("alignment").innerHTML = this.get_alignment();
+		document.getElementById("benefactor").innerHTML = this.get_benefactor();
+	}
+	
+	draw_hand(){
+		var handCards = "";
+		for(var i = 0; i < this.hand.length; i++){
+			handCards += "<span class='fieldElement hvr-float' id='"+this.hand[i].get_name()+this.hand[i].repetition+"' onclick='choose("+i+");'>"+this.hand[i].get_name()+"</span>";
+		}
+		document.getElementById("handCards").innerHTML = handCards;
+		
+	}
+	
 }
 
 class gameMaster{
@@ -129,17 +142,23 @@ class gameMaster{
 		
 		//Set random alignments
 		var alignments = ["Spades", "Hearts","Diamonds","Clubs"]
-		for (let k = 4; k > 0; k--){
-			this.a_move(alignments, getRandom(0,k), k);
+		for (let k = 3; k > 0; k--){
+			this.a_move(alignments, this.getRandom(0,k), k);
 		}
 		
 		//Set players
-		for (var i = 0; i < playerNames.length - 1; i++){
-			this.players.push(playerNames[i], alignments.pop());
+		for (var i = 0; i < playerNames.length; i++){
+			console.log(alignments);
+			this.players.push(new actor(playerNames[i], alignments.pop()));
+			this.players[i].give_hand(this.deck.give());
+			this.players[i].give_hand(this.deck.give());
 		}
 		
 		//Draw on page
-		
+		for (var i = 0; i < this.players.length; i++){
+			this.players[i].draw_field();
+			this.players[i].draw_hand();
+		}
 		
 		this.current = this.players[0];
 	}

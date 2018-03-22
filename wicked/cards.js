@@ -7,8 +7,9 @@ class card{
 	*@param {string} num - The repetition of the card.
 	*@param {image} img - The image of the card.
 	*/
-	constructor(name, repetition, img){
+	constructor(name, type, repetition, img){
 		this.name = name;
+		this.type = type;
 		this.repetition = repetition;
 		this.img = img;
 		this.fake = name;
@@ -20,6 +21,10 @@ class card{
 	*/
 	get_name(){
 		return this.name;
+	}
+	
+	get_type(){
+		return this.type;
 	}
 	
 	/**
@@ -60,7 +65,7 @@ class Deck{
 			this.deck.push(new heartking(i));
 			this.deck.push(new heartqueen(i));
 			this.deck.push(new heartjack(i));
-			this.deck.push(new diamondking(i));
+			/*this.deck.push(new diamondking(i));
 			this.deck.push(new diamondqueen(i));
 			this.deck.push(new diamondjack(i));
 			this.deck.push(new spadeking(i));
@@ -68,7 +73,7 @@ class Deck{
 			this.deck.push(new spadejack(i));
 			this.deck.push(new clubking(i));
 			this.deck.push(new clubqueen(i));
-			this.deck.push(new clubjack(i));
+			this.deck.push(new clubjack(i));*/
 		}
 	}
 	
@@ -112,7 +117,66 @@ class heartking extends card{
 	
 	constructor(repetition){
 		var name = "King of Hearts";
+		var type = "Hearts";
 		var img = "css/wicked/heartking.jpg";
-		super(name, repetition, img);
+		super(name, type, repetition, img);
+	}
+
+	effect(score){
+		return score + score;
+	}
+	
+	tally(alignment, benefactor, tokens){
+		var score = 3;
+		if(alignment==this.type){score += 1;}
+		if(benefactor.get_type() == this.type){score += 1;}
+		return benefactor.effect(score);
+	}
+	
+	end(tokens){
+		
 	}
 }
+
+class heartqueen extends card{
+	
+	constructor(repetition){
+		var name = "Queen of Hearts";
+		var type = "Hearts";
+		var img = "css/wicked/heartqueen.jpg";
+		super(name, type, repetition, img);
+	}
+
+	effect(score){
+		return score + 2;
+	}
+	
+	tally(alignment, benefactor, tokens){
+		var score = 2;
+		if(alignment==this.type){score += 1;}
+		if(benefactor.get_type() == this.type){score += 1;}
+		return benefactor.effect(score);
+	}
+}
+
+class heartjack extends card{
+	
+	constructor(repetition){
+		var name = "Jack of Hearts";
+		var type = "Hearts";
+		var img = "css/wicked/heartjack.jpg";
+		super(name, type, repetition, img);
+	}
+
+	effect(score, tokens){
+		return score + floor(tokens / 2);
+	}
+	
+	tally(alignment, benefactor, tokens){
+		var score = 1;
+		if(alignment==this.type){score += 1;}
+		if(benefactor.get_type() == this.type){score += 1;}
+		return benefactor.effect(score, tokens);
+	}
+}
+

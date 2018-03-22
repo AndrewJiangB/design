@@ -11,12 +11,13 @@
 		<script>
 			deck = null;
 			game = null;
+			chosenCard = null;
 			function setupGame(){
 				deck = new Deck();
 				deck.new_deck();
 				deck.shuffle();
-				game = gameMaster();
-				game.setup("player1",deck);
+				game = new gameMaster;
+				game.setup(["player1"],deck);
 			}
 			
 			function buildCards(){
@@ -30,10 +31,35 @@
 				console.log(cards);
 				var choices = "<table>";
 				for (var k = 0; k < cards.length; k++){
-					choices += "<tr><td id='cards'>" + cards[k] + "</td></tr>"
+					choices += "<tr><td id='card'>" + cards[k] + "</td></tr>"
 				}
 				choices += "</table>";
 				document.getElementById("cardChoices").innerHTML = choices;
+			}
+			
+			function removeItem(itemid) {
+				var element = document.getElementById(itemid); // will return element
+				element.parentNode.removeChild(element); // will remove the element from DOM
+			}
+			
+			function choose(index){
+				if(chosenCard == game.players[0].hand[index]){chosenCard = null;}
+				else{chosenCard = game.players[0].hand[index];}
+			}
+			
+			function place(cardPlace){
+				if(chosenCard == null){return null;}
+				if (cardPlace == "benefactor"){
+					document.getElementById("benefactor").innerHTML = chosenCard.get_name();
+					
+				}
+				else if(cardPlace == "played"){
+					document.getElementById("played").innerHTML = chosenCard.get_name();
+				}
+				else{return;}
+				this.removeItem(chosenCard.get_name()+chosenCard.repetition);
+				chosenCard = null;
+				return;
 			}
 			
 			function showTitle(){
@@ -47,6 +73,7 @@
 			$(function(){
 				hideTitle();
 				buildCards();
+				setupGame();
 			});
 			
 		</script>
@@ -73,13 +100,13 @@
 					</div>
 					<div class="subcategory" id="field">
 						<h2>Field</h2>
-						<div class="fieldElement" id="alignment">
+						<div class="fieldElement hvr-float" id="alignment">
 							<img src="css/wicked/2.jpg"/>
 						</div>
-						<div class="fieldElement" id="benefactor">
+						<div class="fieldElement hvr-float" id="benefactor" onclick="place('benefactor');">
 							<img src="css/wicked/1.jpg"/>
 						</div>
-						<div class="fieldElement" id="played">
+						<div class="fieldElement hvr-float" id="played" onclick="place('played');">
 							<img src="css/wicked/3.jpg"/>
 						</div>
 					</div>
