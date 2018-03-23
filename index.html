@@ -12,6 +12,14 @@
 			deck = null;
 			game = null;
 			chosenCard = null;
+			var cards = [];
+			var suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+			for (var i = 0; i < 4; i++){
+				cards.push("King of " + suits[i]);
+				cards.push("Queen of " + suits[i]);
+				cards.push("Jack of " + suits[i]);
+			}
+			
 			function setupGame(){
 				deck = new Deck();
 				deck.new_deck();
@@ -21,17 +29,9 @@
 			}
 			
 			function buildCards(){
-				var cards = [];
-				var suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
-				for (var i = 0; i < 4; i++){
-					cards.push("King of " + suits[i]);
-					cards.push("Queen of " + suits[i]);
-					cards.push("Jack of " + suits[i]);
-				}
-				console.log(cards);
 				var choices = "<table>";
 				for (var k = 0; k < cards.length; k++){
-					choices += "<tr><td id='card'>" + cards[k] + "</td></tr>"
+					choices += "<tr><td class='card hvr-hang' onclick='declare("+k+");'>" + cards[k] + "</td></tr>"
 				}
 				choices += "</table>";
 				document.getElementById("cardChoices").innerHTML = choices;
@@ -47,14 +47,22 @@
 				else{chosenCard = game.players[0].hand[index];}
 			}
 			
+			function declare(index){
+				if(chosenCard == null){return;}
+				if(chosenCard.get_name() != cards[index]){
+					chosenCard.set_fake(cards[index]);
+				}
+				place("played");
+			}
+			
 			function place(cardPlace){
 				if(chosenCard == null){return null;}
 				if (cardPlace == "benefactor"){
 					document.getElementById("benefactor").innerHTML = chosenCard.get_name();
-					
 				}
 				else if(cardPlace == "played"){
-					document.getElementById("played").innerHTML = chosenCard.get_name();
+					document.getElementById("played").innerHTML = chosenCard.get_fake();
+					//if(chosenCard.get_name()!=chosenCard.get_fake()){document.getElementById("played").innerHTML = chosenCard.get_fake();}
 				}
 				else{return;}
 				this.removeItem(chosenCard.get_name()+chosenCard.repetition);
@@ -106,7 +114,7 @@
 						<div class="fieldElement hvr-float" id="benefactor" onclick="place('benefactor');">
 							<img src="css/wicked/1.jpg"/>
 						</div>
-						<div class="fieldElement hvr-float" id="played" onclick="place('played');">
+						<div class="fieldElement hvr-float" id="played"">
 							<img src="css/wicked/3.jpg"/>
 						</div>
 					</div>

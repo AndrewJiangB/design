@@ -36,7 +36,7 @@ class card{
 	}
 	
 	get_fake(){
-		return this.name;
+		return this.fake;
 	}
 	
 	set_fake(name){
