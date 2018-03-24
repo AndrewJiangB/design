@@ -66,7 +66,7 @@ class actor{
 	out_hand(out_card){
 		var card_index = this.hand.indexOf(out_card);
 		if (card_index >= 0){
-			return this.cards.splice(card_index, 1)[0];
+			return this.hand.splice(card_index, 1)[0];
 		}
 		return null;
 	}

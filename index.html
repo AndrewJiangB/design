@@ -43,8 +43,15 @@
 			}
 			
 			function choose(index){
-				if(chosenCard == game.players[0].hand[index]){chosenCard = null;}
-				else{chosenCard = game.players[0].hand[index];}
+				if(chosenCard == game.players[0].hand[index]){
+					document.getElementById(chosenCard.get_name()+chosenCard.repetition).style = "background-color: rgba(255, 255, 255, 0.4);";
+					chosenCard = null;
+				}
+				else{
+					chosenCard = game.players[0].hand[index];
+					document.getElementById(chosenCard.get_name()+chosenCard.repetition).style = "background-color: rgba(180, 120, 25, 0.4);";
+				}
+				
 			}
 			
 			function declare(index){
@@ -59,14 +66,18 @@
 				if(chosenCard == null){return null;}
 				if (cardPlace == "benefactor"){
 					document.getElementById("benefactor").innerHTML = chosenCard.get_name();
+					game.players[0].give_benefactor(game.players[0].out_hand(chosenCard));
 				}
 				else if(cardPlace == "played"){
 					document.getElementById("played").innerHTML = chosenCard.get_fake();
+					game.players[0].give_played(game.players[0].out_hand(chosenCard));
 					//if(chosenCard.get_name()!=chosenCard.get_fake()){document.getElementById("played").innerHTML = chosenCard.get_fake();}
 				}
 				else{return;}
 				this.removeItem(chosenCard.get_name()+chosenCard.repetition);
 				chosenCard = null;
+				game.players[0].give_hand(this.deck.give());
+				game.players[0].draw_hand();
 				return;
 			}
 			
@@ -108,14 +119,23 @@
 					</div>
 					<div class="subcategory" id="field">
 						<h2>Field</h2>
-						<div class="fieldElement hvr-float" id="alignment">
-							<img src="css/wicked/2.jpg"/>
+						<div class='subcategory'>
+						Alignment
+							<div class="fieldElement hvr-float" id="alignment">
+								<img src="css/wicked/2.jpg"/>
+							</div>
 						</div>
-						<div class="fieldElement hvr-float" id="benefactor" onclick="place('benefactor');">
-							<img src="css/wicked/1.jpg"/>
+						<div class='subcategory'>
+						Benefactor
+							<div class="fieldElement hvr-float" id="benefactor" onclick="place('benefactor');">
+								<img src="css/wicked/1.jpg"/>
+							</div>
 						</div>
-						<div class="fieldElement hvr-float" id="played"">
-							<img src="css/wicked/3.jpg"/>
+						<div class='subcategory'>
+						Played
+							<div class="fieldElement hvr-float" id="played"">
+								<img src="css/wicked/3.jpg"/>
+							</div>
 						</div>
 					</div>
 				</div>
