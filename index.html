@@ -47,6 +47,11 @@
 					document.getElementById(chosenCard.get_name()+chosenCard.repetition).style = "background-color: rgba(255, 255, 255, 0.4);";
 					chosenCard = null;
 				}
+				else if (chosenCard != null){
+					document.getElementById(chosenCard.get_name()+chosenCard.repetition).style = "background-color: rgba(255, 255, 255, 0.4);";
+					chosenCard = game.players[0].hand[index];
+					document.getElementById(chosenCard.get_name()+chosenCard.repetition).style = "background-color: rgba(180, 120, 25, 0.4);";
+				}
 				else{
 					chosenCard = game.players[0].hand[index];
 					document.getElementById(chosenCard.get_name()+chosenCard.repetition).style = "background-color: rgba(180, 120, 25, 0.4);";
